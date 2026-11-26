@@ -1,0 +1,14 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "E-Commerce Store & App-Stack Intelligence Output",
+  "description": "Structured store intelligence including platform, detected apps, catalog size, price band, and discount ratio.",
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "string",
+      "title": "Store Intelligence Dataset",
+      "description": "One normalized store intelligence record per input store domain.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?view=overview"
+    }
+  }
+}

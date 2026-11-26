@@ -1,0 +1,33 @@
+{
+  "title": "E-Commerce Store Intel Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "stores": {
+      "title": "Store Domains or URLs",
+      "type": "array",
+      "description": "List of e-commerce store domains or URLs (e.g. allbirds.com, gymshark.com).",
+      "editor": "stringList",
+      "default": [
+        "allbirds.com",
+        "beardbrand.com",
+        "ridge.com"
+      ],
+      "prefill": [
+        "allbirds.com",
+        "beardbrand.com",
+        "ridge.com"
+      ]
+    },
+    "concurrency": {
+      "title": "Concurrency",
+      "type": "integer",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 15
+    }
+  },
+  "required": [
+    "stores"
+  ]
+}

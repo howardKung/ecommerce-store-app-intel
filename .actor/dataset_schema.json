@@ -1,0 +1,30 @@
+{
+  "actorSpecification": 1,
+  "fields": {},
+  "views": {
+    "overview": {
+      "title": "Store Intelligence Overview",
+      "transformation": {
+        "fields": [
+          "domain",
+          "platform",
+          "currency",
+          "detectedAppsCount",
+          "detectedApps",
+          "catalogSource",
+          "estimatedProductCount",
+          "priceMin",
+          "priceMax",
+          "priceMedian",
+          "discountRatioPct",
+          "status",
+          "charged"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {}
+      }
+    }
+  }
+}
