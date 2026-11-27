@@ -3,7 +3,7 @@
   "nodes": [
     {
       "parameters": {
-        "content": "## Shopify & WooCommerce DTC Store Intel Automation\n\nZero-browser StoreLeads alternative! Detects e-commerce platform, 30+ high-ticket paid apps (Klaviyo, Recharge, Yotpo, Gorgias, Triple Whale), pricing tiers, and discount ratios with **Zero-Charge Protection**.\n\n**Setup (2 Minutes):**\n1. Set `APIFY_API_TOKEN`\n2. Set `SLACK_WEBHOOK_URL` and/or Google Sheets credential\n3. Pass your target DTC store domains in the HTTP Request JSON body\n\nActor page: https://apify.com/howardkung/ecommerce-store-app-intel",
+        "content": "## Shopify & WooCommerce DTC Store Intel Automation\n\nZero-browser StoreLeads alternative! Detects e-commerce platform, 30+ high-ticket paid apps (Klaviyo, Recharge, Yotpo, Gorgias, Triple Whale), pricing tiers, and discount ratios with **Zero-Charge Protection**.\n\n**Setup (2 Minutes):**\n1. Set `APIFY_API_TOKEN`\n2. Set `SLACK_WEBHOOK_URL` and/or Google Sheets credential\n3. Pass your target DTC store domains in the HTTP Request JSON body\n\nActor page: https://apify.com/howardkung/ecommerce-store-app-intel-api-zero-pii",
         "height": 280,
         "width": 440,
         "color": 2
@@ -41,7 +41,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://api.apify.com/v2/acts/howardkung~ecommerce-store-app-intel/run-sync-get-dataset-items?token={{ $env.APIFY_API_TOKEN }}",
+        "url": "=https://api.apify.com/v2/acts/howardkung~ecommerce-store-app-intel-api-zero-pii/run-sync-get-dataset-items?token={{ $env.APIFY_API_TOKEN }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [

@@ -10,8 +10,8 @@ Fast, **zero-browser StoreLeads alternative** built for **DTC marketing agencies
 - **Strict Zero-PII Compliance**: Never scrapes customer reviews, buyer names, or personal emails.
 
 ## Companion B2B Intelligence Suite
-- [**Multi-ATS Career & GTM Buying Signals**](https://apify.com/howardkung/multi-ats-hiring-signals)
-- [**Company DNS, Email-Auth & Tech-Stack Signals**](https://apify.com/howardkung/domain-dns-tech-trust-signals)
+- [**Multi-ATS Career & GTM Buying Signals**](https://apify.com/howardkung/multi-ats-hiring-signals-api-zero-pii)
+- [**Company DNS, Email-Auth & Tech-Stack Signals**](https://apify.com/howardkung/company-dns-email-auth-tech-stack-signals-zero-pii)
 - [**US Startup Funding Signals (SEC Form D API)**](https://apify.com/howardkung/sec-form-d-funding-signals)
 
 ---
@@ -28,11 +28,11 @@ Monitor target DTC brands weekly and push high-spend Shopify/WooCommerce stores 
 
 | Signal Engine | Best Used For | Apify Store | Ready n8n JSON |
 | :--- | :--- | :--- | :--- |
-| **Shopify & WooCommerce Store Intel** *(This Actor)* | DTC platform, 30+ paid apps (Klaviyo, Recharge, Yotpo) & pricing | [Apify](https://apify.com/howardkung/ecommerce-store-app-intel) | [`examples/n8n-workflow.json`](./examples/n8n-workflow.json) |
-| **DNS, Email-Auth & Tech Stack** | MX/SPF/DMARC cold-email safety, Proofpoint/Mimecast & 85+ DNS tools | [Apify](https://apify.com/howardkung/domain-dns-tech-trust-signals) | [GitHub](https://github.com/howardKung/domain-dns-tech-trust-signals/blob/main/examples/n8n-workflow.json) |
-| **Multi-ATS Hiring Signals** | Open roles, 30d velocity & GTM buying signals across 8 ATS APIs | [Apify](https://apify.com/howardkung/multi-ats-hiring-signals) | [GitHub](https://github.com/howardKung/multi-ats-hiring-signals/blob/main/examples/n8n-workflow.json) |
+| **Shopify & WooCommerce Store Intel** *(This Actor)* | DTC platform, 30+ paid apps (Klaviyo, Recharge, Yotpo) & pricing | [Apify](https://apify.com/howardkung/ecommerce-store-app-intel-api-zero-pii) | [`examples/n8n-workflow.json`](./examples/n8n-workflow.json) |
+| **DNS, Email-Auth & Tech Stack** | MX/SPF/DMARC cold-email safety, Proofpoint/Mimecast & 85+ DNS tools | [Apify](https://apify.com/howardkung/company-dns-email-auth-tech-stack-signals-zero-pii) | [GitHub](https://github.com/howardKung/domain-dns-tech-trust-signals/blob/main/examples/n8n-workflow.json) |
+| **Multi-ATS Hiring Signals** | Open roles, 30d velocity & GTM buying signals across 8 ATS APIs | [Apify](https://apify.com/howardkung/multi-ats-hiring-signals-api-zero-pii) | [GitHub](https://github.com/howardKung/multi-ats-hiring-signals/blob/main/examples/n8n-workflow.json) |
 | **US Startup Funding (SEC Form D)** | Newly funded US operating startups (pooled funds filtered out) | [Apify](https://apify.com/howardkung/sec-form-d-funding-signals) | [GitHub](https://github.com/howardKung/sec-form-d-funding-signals/blob/main/examples/n8n-workflow.json) |
-| **SEC Form 4 Insider Cluster Buys** | Open-market C-suite stock purchases (`Code P` only) & cluster alerts | [Apify](https://apify.com/howardkung/sec-form4-insider-cluster-buys) | [GitHub](https://github.com/howardKung/sec-form4-insider-cluster-buys/blob/main/examples/n8n-workflow.json) |
+| **SEC Form 4 Insider Cluster Buys** | Open-market C-suite stock purchases (`Code P` only) & cluster alerts | [Apify](https://apify.com/howardkung/sec-form4-insider-cluster-buys-api-zero-pii) | [GitHub](https://github.com/howardKung/sec-form4-insider-cluster-buys/blob/main/examples/n8n-workflow.json) |
 
 ---
 
