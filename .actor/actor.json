@@ -1,7 +1,7 @@
 {
   "actorSpecification": 1,
   "name": "ecommerce-store-app-intel",
-  "title": "Shopify & WooCommerce Store Intel & App-Stack Detector (Zero-PII)",
+  "title": "Shopify & WooCommerce Store & App-Stack Detector (Zero-PII)",
   "description": "Fast 0-Browser StoreLeads alternative for DTC agencies & SDRs. Detects e-commerce platform, 60+ paid apps/pixels (Klaviyo, Recharge, Yotpo, Gorgias, Triple Whale), pricing tiers, discount ratios, and sitemap SKU fallback with Zero-Charge Protection.",
   "version": "1.0",
   "meta": {
