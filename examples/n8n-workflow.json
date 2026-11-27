@@ -1,0 +1,254 @@
+{
+  "name": "Shopify & WooCommerce Store Intel & App-Stack -> Slack / Google Sheets",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Shopify & WooCommerce DTC Store Intel Automation\n\nZero-browser StoreLeads alternative! Detects e-commerce platform, 30+ high-ticket paid apps (Klaviyo, Recharge, Yotpo, Gorgias, Triple Whale), pricing tiers, and discount ratios with **Zero-Charge Protection**.\n\n**Setup (2 Minutes):**\n1. Set `APIFY_API_TOKEN`\n2. Set `SLACK_WEBHOOK_URL` and/or Google Sheets credential\n3. Pass your target DTC store domains in the HTTP Request JSON body\n\nActor page: https://apify.com/howardkung/ecommerce-store-app-intel",
+        "height": 280,
+        "width": 440,
+        "color": 2
+      },
+      "id": "note-ecom-guide",
+      "name": "Workflow Setup Guide",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -380,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "days",
+              "daysInterval": 7,
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "id": "trigger-ecom-weekly",
+      "name": "Schedule: Weekly DTC Store Audit",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        140,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.apify.com/v2/acts/howardkung~ecommerce-store-app-intel/run-sync-get-dataset-items?token={{ $env.APIFY_API_TOKEN }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"stores\": [\n    \"allbirds.com\",\n    \"beardbrand.com\",\n    \"ridge.com\",\n    \"gymshark.com\"\n  ],\n  \"concurrency\": 5\n}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "http-run-ecom-actor",
+      "name": "Apify: E-Commerce Store App Intel",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        400,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "cond-ecom-ok",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "ok",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "cond-ecom-apps",
+              "leftValue": "={{ $json.detectedAppsCount }}",
+              "rightValue": 3,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-ecom-high-value",
+      "name": "IF: High-Spend DTC Store (>= 3 Apps)",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        660,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SLACK_WEBHOOK_URL || 'https://hooks.slack.com/services/REPLACE/ME/WEBHOOK' }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"text\": \":shopping_bags: *Qualified DTC Prospect:* \" + $json.domain + \" (`\" + $json.platform + \"`)\\n• Installed Apps (\" + $json.detectedAppsCount + \"): \" + ($json.detectedApps || []).join(', ') + \"\\n• Median Price: \" + $json.currency + \" \" + ($json.priceMedian || 'N/A') + \" | Discounted SKUs: \" + ($json.discountRatioPct ?? 'N/A') + \"%\"\n}",
+        "options": {
+          "ignoreResponseCode": true,
+          "timeout": 10000
+        }
+      },
+      "id": "slack-notify-ecom",
+      "name": "Notify Slack: High-Spend DTC Store",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        940,
+        20
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $env.GOOGLE_SHEET_ID || 'REPLACE_WITH_GOOGLE_SHEET_ID' }}"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "EcommerceProspects"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "domain": "={{ $json.domain }}",
+            "platform": "={{ $json.platform }}",
+            "detectedAppsCount": "={{ $json.detectedAppsCount }}",
+            "detectedApps": "={{ ($json.detectedApps || []).join(', ') }}",
+            "priceMedian": "={{ $json.priceMedian }}",
+            "discountRatioPct": "={{ $json.discountRatioPct }}"
+          }
+        },
+        "options": {}
+      },
+      "id": "sheets-log-ecom",
+      "name": "Google Sheets: Log DTC Store Intel",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        940,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "noop-ecom-skip",
+      "name": "Skip Low-Tech / Unreachable Store",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        940,
+        360
+      ]
+    }
+  ],
+  "connections": {
+    "Schedule: Weekly DTC Store Audit": {
+      "main": [
+        [
+          {
+            "node": "Apify: E-Commerce Store App Intel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apify: E-Commerce Store App Intel": {
+      "main": [
+        [
+          {
+            "node": "IF: High-Spend DTC Store (>= 3 Apps)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF: High-Spend DTC Store (>= 3 Apps)": {
+      "main": [
+        [
+          {
+            "node": "Notify Slack: High-Spend DTC Store",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google Sheets: Log DTC Store Intel",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Skip Low-Tech / Unreachable Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": [
+    {
+      "name": "Apify"
+    },
+    {
+      "name": "Shopify"
+    },
+    {
+      "name": "DTC Ecommerce"
+    }
+  ]
+}
