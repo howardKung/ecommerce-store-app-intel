@@ -34,3 +34,8 @@ Monitor target DTC brands weekly and push high-spend Shopify/WooCommerce stores 
 | **US Startup Funding (SEC Form D)** | Newly funded US operating startups (pooled funds filtered out) | [Apify](https://apify.com/howardkung/sec-form-d-funding-signals) | [GitHub](https://github.com/howardKung/sec-form-d-funding-signals/blob/main/examples/n8n-workflow.json) |
 | **SEC Form 4 Insider Cluster Buys** | Open-market C-suite stock purchases (`Code P` only) & cluster alerts | [Apify](https://apify.com/howardkung/sec-form4-insider-cluster-buys) | [GitHub](https://github.com/howardKung/sec-form4-insider-cluster-buys/blob/main/examples/n8n-workflow.json) |
 
+---
+
+### 🛡️ Stop Runaway n8n & LLM Bills — AgentGuard Pro Kit
+Running automated B2B / SEC enrichment pipelines in **n8n**? Protect your OpenAI/Anthropic budget with PostgreSQL atomic `FOR UPDATE` spend caps, exponential-backoff webhook DLQ recovery, and a **1-click White-Label Client ROI Dashboard**:
+👉 **[Get AgentGuard Pro Kit on Gumroad ($49 Solo / $89 Agency Unlimited) ↗](https://howardk1.gumroad.com/l/agentguard-pro-kit)** | **[Free n8n Starter Workflows ↗](https://github.com/howardKung/agentguard-kit)**
