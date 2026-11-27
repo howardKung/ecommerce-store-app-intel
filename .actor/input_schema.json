@@ -22,7 +22,9 @@
     "concurrency": {
       "title": "Concurrency",
       "type": "integer",
+      "description": "Maximum number of store domains inspected concurrently (1-15). Default (5) completes fast without triggering store rate limits.",
       "default": 5,
+      "prefill": 5,
       "minimum": 1,
       "maximum": 15
     }
